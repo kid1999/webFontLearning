@@ -40,34 +40,47 @@
 </template>
 
 <script>
-    export default {
-        name: "add-blog",
-        data(){
-            return{
-                blog:{
-                    title:"",
-                    content:"",
-                    studys:[],
-                    author:"",
-                },
-                authors:['kid','peter','tom'],
-                submited:true,
-            }
-        },
-        //此处使用VueResource ajax
-        methods:{
-            post:function () {
-                this.$http.post("http://jsonplaceholder.typicode.com/posts",{
-                    title:this.blog.title,
-                    body:this.blog.content,
-                    userId:1,
-                }).then(function (data) {
-                    console.log(data);
-                    this.submited = false;
-                });
-            }
+import axios from 'axios'
+export default {
+    name: "add-blog",
+    data(){
+        return{
+            blog:{
+                title:"",
+                content:"",
+                studys:[],
+                author:"",
+            },
+            authors:['kid','peter','tom'],
+            submited:true,
+        }
+    },
+    //此处使用VueResource ajax
+    methods:{
+        // post by vue-resouce
+        // post:function () {
+        //     this.$http.post("http://jsonplaceholder.typicode.com/posts",{
+        //         title:this.blog.title,
+        //         body:this.blog.content,
+        //         userId:1,
+        //     }).then(function (data) {
+        //         console.log(data);
+        //         this.submited = false;
+        //     });
+        // },
+        // post by axios
+        post:function () {
+            axios.post("/posts",{
+                title:this.blog.title,
+                body:this.blog.content,
+                userId:1,
+            }).then((data) =>{
+                console.log(data);
+                this.submited = false;
+            });
         }
     }
+}
 </script>
 
 <style scoped>

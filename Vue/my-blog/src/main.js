@@ -3,6 +3,12 @@ import App from './App.vue'
 import VueResource from 'vue-resource'
 import VueRouter from "vue-router";
 import Routes from './routes'
+import axios from 'axios'
+
+
+// axios 全局配置
+axios.defaults.baseURL = "http://jsonplaceholder.typicode.com";
+// axios.defaults.headers.xxx   请求头
 
 Vue.config.productionTip = false;
 Vue.use(VueResource);
