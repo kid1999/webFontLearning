@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>日历显示</title>
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/bootstrap.year.calendar.css">
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/bootstrap.min.js"></script>
+  <script src="static/js/bootstrap.year.calendar.js"></script>
+
+  <style>
+    body{
+      background-image: url("static/imgs/bg.jpg");
+      background-repeat: no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      background-attachment: fixed;
+    }
+    a:hover{
+      text-decoration:none;
+      color:black;
+    } 
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal"><a href="index.html">Gakki's website</a></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="./calendar.html">日历选择</a>
+      <a class="p-2 text-dark"href="photos.html">瀑布流展示</a>
+      <a class="p-2 text-dark" href="order.html">订单选择</a>
+    </nav>
+    <a class="btn btn-outline-primary" href="register.html">注册</a>
+  </div>
+
+  <div id="calendar">
+
+  </div>
+
+</div>
+
+<script>
+  $("#calendar").calendar();
+</script>
+
+
+</body>
+</html>

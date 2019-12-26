@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>订单</title>
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/bootstrap.min.js"></script>
+
+  <style>
+    body{
+      background-image: url("static/imgs/bg.jpg");
+      background-repeat: no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      background-attachment: fixed;
+    }
+    a:hover{
+      text-decoration:none;
+      color:black;
+    } 
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal"><a href="index.html">Gakki's website</a></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="calendar.html">日历选择</a>
+      <a class="p-2 text-dark"href="photos.html">瀑布流展示</a>
+      <a class="p-2 text-dark" href="order.html">订单选择</a>
+    </nav>
+    <a class="btn btn-outline-primary" href="register.html">注册</a>
+  </div>
+
+
+  <table class="table bg-light" id="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">商品名</th>
+      <th scope="col">价格</th>
+      <th scope="col">数量</th>
+      <th scope="col">增加</th>
+      <th scope="col">删除</th>
+    </tr>
+    </thead>
+    <tbody id="body">
+    <tr id="1">
+      <th scope="row">1</th>
+      <td>泡椒鸡爪</td>
+      <td>1.2</td>
+      <td>2</td>
+      <td><img src="static/imgs/add.png" onclick="add(1)"></td>
+      <td><img src="static/imgs/minus.png" onclick="minus(1)"></td>
+    </tr>
+    <tr id="2">
+      <th scope="row">2</th>
+      <td>香辣小龙虾</td>
+      <td>12.0</td>
+      <td>1</td>
+      <td><img src="static/imgs/add.png" onclick="add(2)"></td>
+      <td><img src="static/imgs/minus.png" onclick="minus(2)"></td>
+    </tr>
+    <tr id="3">
+      <th scope="row">3</th>
+      <td>青椒肉丝</td>
+      <td>5.5</td>
+      <td>3</td>
+      <td><img src="static/imgs/add.png" onclick="add(3)"></td>
+      <td><img src="static/imgs/minus.png" onclick="minus(3)"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-info" onclick="push()">随机添加</button>
+
+</div>
+
+
+<script>
+
+  function push() {
+	  var max_index = $("#body")[0].rows.length + 1;
+
+	  var trNode = document.createElement("tr");
+	  trNode.setAttribute("id",max_index);
+	  var td0 = document.createElement("td");
+	  td0.innerText = max_index;
+	  var td1 = document.createElement("td");
+	  td1.innerText = Math.random().toString(36).slice(-8);
+	  var td2 = document.createElement("td");
+	  td2.innerText = parseInt(Math.random()*10);
+	  var td3 = document.createElement("td");
+	  td3.innerText = parseInt(Math.random()*10);
+	  var td4 = document.createElement("td");
+	  var img4 = document.createElement("img");
+	  img4.setAttribute("src","static/imgs/add.png");
+	  img4.setAttribute("onclick","add(" + max_index + ")");
+	  td4.appendChild(img4);
+
+	  var td5 = document.createElement("td");
+	  var img5 = document.createElement("img");
+	  img5.setAttribute("src","static/imgs/minus.png");
+	  img5.setAttribute("onclick","minus(" + max_index + ")");
+	  td5.appendChild(img5);
+
+	  trNode.appendChild(td0);
+	  trNode.appendChild(td1);
+	  trNode.appendChild(td2);
+	  trNode.appendChild(td3);
+	  trNode.appendChild(td4);
+	  trNode.appendChild(td5);
+
+	  $("#body")[0].appendChild(trNode);
+  }
+
+	function add(i) {
+		var index = '#' + i;
+		var line = $(index).clone([true]);
+		var data = line.prevObject[0].cells[3];
+		data.innerText = parseInt(data.innerText) +1;
+		console.info("add");
+	}
+
+	function minus(i) {
+		var index = '#' + i;
+		var line = $(index).clone([true]);
+		var data = line.prevObject[0].cells[3];
+		var num = parseInt(data.innerText) - 1;
+		if(num == 0){
+			$(index).remove();
+    }else{
+			data.innerText = num;
+    }
+		console.info("minus");
+	}
+
+</script>
+
+
+</body>
+</html>

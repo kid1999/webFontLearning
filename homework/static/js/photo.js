@@ -4,7 +4,8 @@ window.onload = function(){
     imgLoaction("container","box");
 
     //虚拟待加载文件
-    var imgData = {"data":[{"src":"0.jpg"},{"src":"1.jpg"},{"src":"2.jpg"},{"src":"3.jpg"}]};
+    var imgData = {"data":[{"src":"1.jpg"},{"src":"2.jpg"},{"src":"3.jpg"},
+            {"src":"5.jpg"},{"src":"6.jpg"},{"src":"7.png"},{"src":"8.png"},{"src":"9.png"}]};
     window.onscroll = function () {
         if(checkFlag()){
             var cparent = document.getElementById("container");
@@ -16,7 +17,7 @@ window.onload = function(){
                 boximg.className = "box_img";
                 ccontent.appendChild(boximg);
                 var img = document.createElement("img");
-                img.src = "photos/" + imgData.data[i].src;
+                img.src = "static/imgs/" + imgData.data[i].src;
                 boximg.appendChild(img);
             }
             imgLoaction("container","box");     //再次调用瀑布流效果
@@ -33,10 +34,13 @@ function  checkFlag() {
     var lastContentHeight = ccontent[ccontent.length - 1].offsetTop;  // 最后一张照片距顶部距离
     var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;  //滑动距离
     var pageHeight = document.documentElement.clientHeight || document.body.clientHeight;   //页面距顶距离
+    console.info(lastContentHeight);
+    console.info(scrolltop);
+    console.info(pageHeight);
     if(lastContentHeight < (scrolltop + pageHeight)){
-		return true;    //允许加载
-	}
-        
+        return true;    //允许加载
+    }
+
 }
 
 
@@ -45,7 +49,7 @@ function imgLoaction(parent,content){
     //将parent下多有的content全部取出
     var cparent = document.getElementById(parent);
     var ccontent = getChildElement(cparent,content);    // box盒子对象集合
-    
+
     var imgWidth = ccontent[0].offsetWidth;             //img宽度
     var num = Math.floor(document.documentElement.clientWidth / imgWidth); //根据当前窗口决定 横排摆放数量
     cparent.style.cssText = "width:" + imgWidth*num + "px;margin:0 auto";  //css修改样式
